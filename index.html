@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <header class="header">
+        <h1 class="headerTitle">
+            Список задач
+        </h1>
+    </header>
+    <main class="main">
+        <div class="addTaskContainer">
+            <div class ="addTaskTitle">
+                Новая задача
+            </div>
+            <div class="inputTaskContainer">
+                <input class="inputTask"  placeholder="название задачи"/>
+                <button class="inputTaskButton">+ Добавить</button>
+            </div>
+        </div>
+        <div class="tasksContainer">
+            <div class="tasks backlog">
+                <div class="tasksTitle backlog">
+                    Бэклог
+                </div>
+                <div class="tasksList backlog">
+                    <div class="task">
+                        Выучить js
+                    </div>
+                    <div class="task">
+                        Выучить React
+                    </div>
+                    <div class="task">
+                        Сделать домашку
+                    </div>
+                </div>
+            </div>
+            <div class="tasks inProgress">
+                <div class="tasksTitle inProgress">
+                    В процессе
+                </div>
+                <div class="tasksList inProgress">
+                    <div class="task">
+                        Выучить js
+                    </div>
+                    <div class="task">
+                        Выучить React
+                    </div>
+                    <div class="task">
+                        Сделать домашку
+                    </div>
+                </div>
+            </div>
+            <div class="tasks done">
+                <div class="tasksTitle done">
+                    Готово
+                </div>
+                <div class="tasksList done">
+                    <div class="task">
+                        Выучить js
+                    </div>
+                    <div class="task">
+                        Выучить React
+                    </div>
+                    <div class="task">
+                        Сделать домашку
+                    </div>
+                </div>
+            </div>
+            <div class="tasks trash">
+                <div class="tasksTitle trash">
+                    Корзина
+                </div>
+                <div class="tasksList trash">
+                    <div class="task">
+                        Выучить js
+                    </div>
+                    <div class="task">
+                        Выучить React
+                    </div>
+                    <div class="task">
+                        Сделать домашку
+                    </div>
+                    <button class="trashButton">Очистить</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+<script src="script.js"></script>
+</html>

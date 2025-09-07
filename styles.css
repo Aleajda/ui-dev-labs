@@ -1,0 +1,167 @@
+body {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+header {
+    background-color: coral;
+    color: white;
+    padding: 20px 40px;
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: 2px;
+}
+
+main {
+    flex: 1 0 auto;
+    padding: 40px;
+    background-color: rgba(255, 127, 80, 0.1);
+}
+
+.addTaskContainer {
+    display: inline-flex;
+    flex-direction: column;
+    padding: 16px;
+    border-radius: 10px;
+    background-color: white;
+    gap: 10px;
+}
+
+.addTaskTitle {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.inputTaskContainer{
+    display: flex;
+    gap: 16px;
+}
+
+.inputTask {
+    padding: 10px 10px;
+    border-radius: 10px;
+    border: 1px solid #EEEEEE;
+    box-shadow: 2px 2px 4px #EEEEEE;
+    outline: none;
+}
+
+.inputTask::placeholder {
+    opacity: 0.5;
+}
+
+
+.inputTaskButton {
+    background-color: coral;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 0 24px;
+    font-size: 16px;
+    cursor: pointer;
+    line-height: 20px;
+    box-shadow: 2px 2px 4px gray;
+}
+
+.inputTaskButton:hover {
+    background-color: rgba(255, 127, 80, 0.9);
+    scale: 0.95;
+}
+
+.inputTaskButton::first-letter {
+    font-size: 20px;
+    line-height: 20px;
+}
+
+.tasksContainer {
+    display: flex;
+    gap: 30px;
+    margin-top: 25px;
+}
+
+.tasks {
+    width: 25%;
+}
+
+.tasksTitle {
+    display: inline-block;
+    font-weight: 600;
+    font-size: 18px;
+    border-radius: 10px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
+}
+
+.tasksTitle.backlog {
+    background-color: #E3E3E3;
+    color: gray
+}
+
+.tasksTitle.inProgress {
+    background-color: #D6E7FF;
+    color: #6085ff
+}
+
+.tasksTitle.done {
+    background-color: #D7F9E0;
+    color: #45ae48
+}
+
+.tasksTitle.trash {
+    background-color: #FBE3E3;
+    color: #ff535c ;
+}
+
+
+.tasksList {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.task {
+    font-weight: 500;
+    font-size: 16px;
+    padding: 12px 8px;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.tasksList.backlog .task {
+    border-left: #E3E3E3 4px solid;
+}
+
+.tasksList.inProgress .task {
+    border-left: #D6E7FF 4px solid;
+}
+
+.tasksList.done .task {
+    border-left: #D7F9E0 4px solid;
+}
+
+.tasksList.trash .task {
+    border-left: #FBE3E3 4px solid;
+}
+
+
+.trashButton {
+    background-color: #C9666C;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 16px;
+    margin-top: 8px;
+    padding: 12px 0;
+    cursor: pointer;
+    box-shadow: 2px 2px 4px gray;
+}
+
+.trashButton:hover {
+    scale: 0.95;
+}
+
+
