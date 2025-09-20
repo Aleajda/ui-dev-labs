@@ -1,16 +1,22 @@
 import { createElement } from "../framework/render.js";
 
-function createTaskListContainerComponentTemplate() {
-    return `<div class="tasks backlog">
-                <div class="tasksTitle backlog">
-                    Бэклог
+function createTaskListContainerComponentTemplate(className, name) {
+    return `<div class="tasks ${className}">
+                <div class="tasksTitle ${className}">
+                    ${name}
                 </div>
             </div>`;
 }
 
 export default class TaskListContainerComponent {
+
+    constructor(className, name) {
+        this.className = className;
+        this.name = name;
+    }
+
     getTemplate() {
-        return createTaskListContainerComponentTemplate();
+        return createTaskListContainerComponentTemplate(this.className, this.name);
     }
 
     getElement() {

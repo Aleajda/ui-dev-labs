@@ -1,12 +1,18 @@
 import { createElement } from "../framework/render.js";
 
-function createTaskListComponentTemplate() {
-    return `<div class="tasksList backlog"></div>`;
+function createTaskListComponentTemplate(className) {
+    return `<div class="tasksList ${className}"></div>`;
 }
 
 export default class TaskListComponent {
+
+    constructor(className){
+        this.className = className;
+    }
+
+
     getTemplate() {
-        return createTaskListComponentTemplate();
+        return createTaskListComponentTemplate(this.className);
     }
 
     getElement() {
@@ -21,3 +27,39 @@ export default class TaskListComponent {
         this.element = null;
     }
 }
+
+
+// import { createElement } from "../framework/render.js";
+// // import { tasks } from './../mock/task.js';
+
+// function createTaskComponentTemplate(task) {
+//     const {title} = task;
+    
+//     return `<div class="task">
+//                         ${title}
+//                     </div>`;
+// }
+
+// export default class TaskComponent {
+
+//     constructor({task}){
+//         this.task = task;
+//     }
+
+
+//     getTemplate() {
+//         return createTaskComponentTemplate(this.task);
+//     }
+
+//     getElement() {
+//         if (!this.element) {
+//             this.element = createElement(this.getTemplate());
+//         }
+
+//         return this.element;
+//     }
+
+//     removeElement() {
+//         this.element = null;
+//     }
+// }
