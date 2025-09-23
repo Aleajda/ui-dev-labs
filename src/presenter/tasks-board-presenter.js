@@ -3,6 +3,7 @@ import TaskBoardComponent from './../view/task-board-component.js';
 import { render } from '../framework/render.js';
 import TaskListComponent from './../view/task-list-component.js';
 import TaskComponent from './../view/task-component.js';
+import DeleteButtonComponent from '../view/delete-button-component.js';
 
 
 
@@ -37,6 +38,9 @@ export default class TaskBoardPresenter {
             for (let j = 0; j < boardTasks.length; j++){
                 const taskComponent = new TaskComponent({task: boardTasks[j]});
                 render(taskComponent, taskListComponent.getElement());
+            }
+            if (i === 3){
+                render(new DeleteButtonComponent(), taskListComponent.getElement());
             }
         }
     }
