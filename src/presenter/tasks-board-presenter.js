@@ -54,24 +54,24 @@ export default class TaskBoardPresenter {
         render(this.tasksBoardComponent, this.#boardContainer);
         for (let i = 0; i < 4; i++){
             
-            const taskListContainerComponent = this.#renderTaskListContainerComponent(taskTypes[i].className, taskTypes[i].name, this.tasksBoardComponent.getElement());
+            const taskListContainerComponent = this.#renderTaskListContainerComponent(taskTypes[i].className, taskTypes[i].name, this.tasksBoardComponent.element);
 
-            const taskListComponent = this.#renderTasksList(taskTypes[i].className, taskListContainerComponent.getElement())
+            const taskListComponent = this.#renderTasksList(taskTypes[i].className, taskListContainerComponent.element)
 
             const boardTasks = [...this.#taskModel.getTasks()].filter((task) => {
                 return task.status === taskTypes[i].className;
             })
 
             if (boardTasks.length === 0){
-                this.#renderEmptyList(taskListComponent.getElement())
+                this.#renderEmptyList(taskListComponent.element)
             }
 
             for (let j = 0; j < boardTasks.length; j++){
-                this.#renderTask(boardTasks[j], taskListComponent.getElement());
+                this.#renderTask(boardTasks[j], taskListComponent.element);
             }
 
             if (i === 3){
-                this.#renderDeleteButton(taskListComponent.getElement())
+                this.#renderDeleteButton(taskListComponent.element)
             }
         }
     }

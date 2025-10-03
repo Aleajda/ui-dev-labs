@@ -1,4 +1,3 @@
-import { createElement } from "../framework/render.js";
 import { AbstractComponent } from "../framework/view/abstract-component.js";
 
 function createTaskBoardComponentTemplate() {
@@ -6,7 +5,7 @@ function createTaskBoardComponentTemplate() {
 }
 
 export default class TaskBoardComponent extends AbstractComponent{
-    getTemplate() {
+    get template() {
         return createTaskBoardComponentTemplate();
     }
 }

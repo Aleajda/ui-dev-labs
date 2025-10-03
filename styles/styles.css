@@ -164,3 +164,9 @@ main {
     scale: 0.95;
 }
 
+.emptyList {
+    border: 1px darkgrey dashed;
+    border-radius: 10px;
+    color: darkgrey;
+    padding: 12px 8px;
+}

@@ -11,7 +11,7 @@ export default class TaskListComponent extends AbstractComponent {
         this.className = className;
     }
 
-    getTemplate() {
+    get template() {
         return createTaskListComponentTemplate(this.className);
     }
 

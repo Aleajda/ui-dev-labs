@@ -8,13 +8,13 @@ export class AbstractComponent {
         }
     }
 
-    getElement() {
+    get element() {
         if (!this.#element) {
-            this.#element = createElement(this.getTemplate());
+            this.#element = createElement(this.template);
         }
         return this.#element;
     }
-    getTemplate() {
+    get template() {
         throw new Error('Abstract method not implemented: get template');
     }
 

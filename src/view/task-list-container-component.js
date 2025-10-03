@@ -1,4 +1,3 @@
-import { createElement } from "../framework/render.js";
 import { AbstractComponent } from "../framework/view/abstract-component.js";
 
 function createTaskListContainerComponentTemplate(className, name) {
@@ -17,7 +16,7 @@ export default class TaskListContainerComponent extends AbstractComponent{
         this.name = name;
     }
 
-    getTemplate() {
+    get template() {
         return createTaskListContainerComponentTemplate(this.className, this.name);
     }
 }
