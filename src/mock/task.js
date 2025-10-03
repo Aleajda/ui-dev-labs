@@ -34,14 +34,14 @@ export const tasks = [
         title: "Погладить кота",
         status: "done"
     },
-    {
-        id: "8",
-        title: "Сходить погулять",
-        status: "trash"
-    },
-    {
-        id: "9",
-        title: "Прочитать Войну и Мир",
-        status: "trash"
-    }
+    // {
+    //     id: "8",
+    //     title: "Сходить погулять",
+    //     status: "trash"
+    // },
+    // {
+    //     id: "9",
+    //     title: "Прочитать Войну и Мир",
+    //     status: "trash"
+    // }
 ]
