@@ -12,13 +12,29 @@ export default class TaskBoardPresenter {
 
     tasksBoardComponent = new TaskBoardComponent();
     taskListContainerComponent = new TaskListContainerComponent();
-
+    #taskTypes = [];
     #boardContainer = null;
     #taskModel = null;
 
     constructor({boardContainer, taskModel, }) {
         this.#boardContainer = boardContainer;
         this.#taskModel = taskModel;
+        this.#taskModel.addObserver(this.#handleModelChange.bind(this))
+    }
+
+    createTask() {
+        const taskTitle = document.querySelector('.inputTask').value.trim();
+        if (!taskTitle) {
+            return;
+        }
+
+        this.#taskModel.addTask(taskTitle);
+
+        document.querySelector('.inputTask').value = '';
+    }
+
+    removeTasks() {
+        this.#taskModel.removeTasks();   
     }
 
     #renderTask(task, container) {
@@ -44,22 +60,19 @@ export default class TaskBoardPresenter {
     }
 
     #renderDeleteButton(container){
-        render(new DeleteButtonComponent(), container);
+        render(new DeleteButtonComponent({onClick: this.removeTasks.bind(this)}), container);
     }
 
-    init() {
-
-        const taskTypes = [...this.#taskModel.getTaskTypes()]
-
+    #renderBoard (){
         render(this.tasksBoardComponent, this.#boardContainer);
         for (let i = 0; i < 4; i++){
             
-            const taskListContainerComponent = this.#renderTaskListContainerComponent(taskTypes[i].className, taskTypes[i].name, this.tasksBoardComponent.element);
+            const taskListContainerComponent = this.#renderTaskListContainerComponent(this.#taskTypes[i].className, this.#taskTypes[i].name, this.tasksBoardComponent.element);
 
-            const taskListComponent = this.#renderTasksList(taskTypes[i].className, taskListContainerComponent.element)
+            const taskListComponent = this.#renderTasksList(this.#taskTypes[i].className, taskListContainerComponent.element)
 
-            const boardTasks = [...this.#taskModel.getTasks()].filter((task) => {
-                return task.status === taskTypes[i].className;
+            const boardTasks = [...this.tasks].filter((task) => {
+                return task.status === this.#taskTypes[i].className;
             })
 
             if (boardTasks.length === 0){
@@ -74,6 +87,27 @@ export default class TaskBoardPresenter {
                 this.#renderDeleteButton(taskListComponent.element)
             }
         }
+    }
+
+    #clearBoard() {
+        this.tasksBoardComponent.element.innerHTML = '';
+    }
+
+    init() {
+
+        this.#taskTypes = [...this.#taskModel.getTaskTypes()]
+
+        this.#renderBoard();
+    }
+
+    #handleModelChange() {
+        this.#clearBoard();
+        this.#renderBoard();
+    }
+
+    
+    get tasks() {
+        return this.#taskModel.tasks;
     }
 
 }
