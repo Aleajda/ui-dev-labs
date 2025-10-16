@@ -54,13 +54,17 @@ export default class TaskBoardPresenter {
     }
 
     #renderTaskListContainerComponent(className, name, container) {
-        const taskListContainerComponent = new TaskListContainerComponent(className, name);
+        const taskListContainerComponent = new TaskListContainerComponent(className, name, this.#handleTaskDrop.bind(this));
         render(taskListContainerComponent, container);
         return taskListContainerComponent;
     }
 
     #renderDeleteButton(container){
         render(new DeleteButtonComponent({onClick: this.removeTasks.bind(this)}), container);
+    }
+
+    #handleTaskDrop(taskId, newStatus) {
+        this.#taskModel.updateTaskStatus(taskId, newStatus);
     }
 
     #renderBoard (){
