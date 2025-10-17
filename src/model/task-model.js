@@ -32,13 +32,32 @@ export default class TaskModel {
         return newTask;
     }
 
-    updateTaskStatus(taskId, newStatus) {
+    updateTaskPosition(taskId, newStatus, newOrder) {
         const task = this.#boardtasks.find(task => task.id === taskId);
-        if (task) {
-            task.status = newStatus;
-            this._notifyObservers();
+        if (!task) return;
+
+        task.status = newStatus;
+
+        if (newOrder && Array.isArray(newOrder)) {
+            const tasksInStatus = this.#boardtasks.filter(t => t.status === newStatus);
+            const reordered = [];
+
+            newOrder.forEach(id => {
+                const t = this.#boardtasks.find(x => x.id === id);
+                if (t && t.status === newStatus) reordered.push(t);
+            });
+
+            const remaining = tasksInStatus.filter(t => !reordered.includes(t));
+            this.#boardtasks = [
+                ...this.#boardtasks.filter(t => t.status !== newStatus),
+                ...reordered,
+                ...remaining
+            ];
         }
+
+        this._notifyObservers();
     }
+
 
     addObserver(observer) {
         this.#observers.push(observer);

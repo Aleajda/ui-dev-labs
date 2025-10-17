@@ -8,8 +8,7 @@ function createTaskListContainerComponentTemplate(className, name) {
             </div>`;
 }
 
-export default class TaskListContainerComponent extends AbstractComponent{
-
+export default class TaskListContainerComponent extends AbstractComponent {
     constructor(className, name, onTaskDrop) {
         super();
         this.className = className;
@@ -26,12 +25,16 @@ export default class TaskListContainerComponent extends AbstractComponent{
 
         container.addEventListener('dragover', (event) => {
             event.preventDefault();
-        })
+        });
 
         container.addEventListener('drop', (event) => {
             event.preventDefault();
             const taskId = event.dataTransfer.getData('text/plain');
-            onTaskDrop(taskId, this.className);
-        })
+
+            const tasksList = container.querySelector('.tasksList');
+            const newOrder = [...tasksList.querySelectorAll('.task')].map(el => el.dataset.id);
+
+            onTaskDrop(taskId, this.className, newOrder);
+        });
     }
 }

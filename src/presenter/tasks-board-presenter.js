@@ -63,8 +63,8 @@ export default class TaskBoardPresenter {
         render(new DeleteButtonComponent({onClick: this.removeTasks.bind(this)}), container);
     }
 
-    #handleTaskDrop(taskId, newStatus) {
-        this.#taskModel.updateTaskStatus(taskId, newStatus);
+    #handleTaskDrop(taskId, newStatus, newOrder) {
+        this.#taskModel.updateTaskPosition(taskId, newStatus, newOrder);
     }
 
     #renderBoard (){
