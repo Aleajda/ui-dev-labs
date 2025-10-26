@@ -33,8 +33,13 @@ export default class TaskBoardPresenter {
         document.querySelector('.inputTask').value = '';
     }
 
-    removeTasks() {
-        this.#taskModel.removeTasks();   
+    async removeTasks() {
+        try {
+            await this.#taskModel.removeTasks();
+        } catch (err) {
+            console.error('Ошибка при очистке корзины: ', err)
+        }
+        // this.#taskModel.removeTasks();   
     }
 
     #renderTask(task, container) {
@@ -63,8 +68,13 @@ export default class TaskBoardPresenter {
         render(new DeleteButtonComponent({onClick: this.removeTasks.bind(this)}), container);
     }
 
-    #handleTaskDrop(taskId, newStatus, newOrder) {
-        this.#taskModel.updateTaskPosition(taskId, newStatus, newOrder);
+    async #handleTaskDrop(taskId, newStatus) {
+        try {
+            await this.#taskModel.updateTaskStatus(taskId, newStatus);
+        } catch (err) {
+            console.error('Ошибка при обновлении статуса задачи: ', err)
+        }
+        // this.#taskModel.updateTaskStatus(taskId, newStatus);
     }
 
     #renderBoard (){
@@ -97,10 +107,9 @@ export default class TaskBoardPresenter {
         this.tasksBoardComponent.element.innerHTML = '';
     }
 
-    init() {
-
+    async init() {
+        await this.#taskModel.init();
         this.#taskTypes = [...this.#taskModel.getTaskTypes()]
-
         this.#renderBoard();
     }
 
