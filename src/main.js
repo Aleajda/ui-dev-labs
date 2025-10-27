@@ -9,6 +9,7 @@ import {render, RenderPosition} from './framework/render.js';
 import TaskBoardPresenter from './presenter/tasks-board-presenter.js';
 import TaskModel from './model/task-model.js';
 import TasksApiService from './tasks-api-service.js';
+import TaskBoardContainerComponent from './view/task-board-container-component.js';
 
 
 
@@ -16,11 +17,12 @@ import TasksApiService from './tasks-api-service.js';
 const END_POINT = 'https://68f206afb36f9750deeb1de1.mockapi.io';
 const bodyContainer = document.querySelector('.body');
 const mainContainer = document.querySelector('.main')
-const taskBoardComponent = new TaskBoardComponent();
 
 
 const taskModel = new TaskModel({tasksApiService: new TasksApiService(END_POINT)});
-const taskBoardPresenter = new TaskBoardPresenter({boardContainer: mainContainer, taskModel});
+const taskBoardContainer = new TaskBoardContainerComponent();
+render(taskBoardContainer, mainContainer);
+const taskBoardPresenter = new TaskBoardPresenter({boardContainer: taskBoardContainer.element, taskModel});
 
 const formAddTaskComponent = new AddTaskComponent({
     onClick: handleNewTaskButtonClick

@@ -37,24 +37,5 @@ export default class ApiService {
    static catchError(err) {
      throw err;
    }
-
-   async updateTask(task) {
-    const response = await this._load({
-        url: `tasks/${task.id}`,
-        method: 'PUT',
-        body: JSON.stringify(task),
-        headers: new Headers({'Content-Type': 'application/json'}),
-    })
-
-    const parsedResponse = await ApiService.parseResponse(response);
-
-    return parsedResponse;
-   }
-
-   async deleteTask(taskId) {
-    await this._load({
-        url: `tasks/${taskId}`,
-        method: 'DELETE'
-    })
-   }
+   
  }

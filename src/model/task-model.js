@@ -24,7 +24,6 @@ export default class TaskModel extends Observable {
         } catch (err) {
             this.#boardtasks = [];
         }
-        // this._notify(UpdateType.INIT);
     }
 
     get tasks() {
@@ -57,15 +56,22 @@ export default class TaskModel extends Observable {
         return this.#boardtasks.some(task => task.status === 'trash');
     }
 
-    addTask(title) {
+    async addTask(title) {
         const newTask = {
             title,
             status: "backlog",
             id: generateId(),
         };
-        this.#boardtasks.push(newTask);
-        this._notify(UserAction.ADD_TASK, newTask);
-        return newTask;
+        
+        try {
+            const createdTask = await this.#tasksApiService.addTask(newTask);
+            this.#boardtasks.push(createdTask);
+            this._notify(UserAction.ADD_TASK, createdTask);
+            return createdTask;
+        } catch (err) {
+            console.error('Ошибка при создании задачи: ', err);
+            throw err;
+        }
     }
 
     async updateTaskStatus(taskId, newStatus) {
